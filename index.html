@@ -103,7 +103,7 @@
         <script type="text/javascript">
             const data = location.search.replace('?', '').split('&').reduce((s, c) => ((s[c.split('=')[0]] = c.split('=')[1]), s), {}).data
             try {
-                const res = JSON.parse(decodeURIComponent(escape(window.atob(res))))
+                const res = JSON.parse(decodeURIComponent(escape(window.atob(data))))
 
                 const { type, id, name, year } = res
                 document.title = `${name} - ${year}`
