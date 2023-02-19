@@ -101,11 +101,10 @@
             <div id="yohoho" class="yohoho"></div>
         </div>
         <script type="text/javascript">
+            // prettier-ignore
             const data = location.search.replace('?', '').split('&').reduce((s, c) => ((s[c.split('=')[0]] = c.split('=')[1]), s), {}).data
             try {
-                const res = JSON.parse(decodeURIComponent(escape(window.atob(data))))
-
-                const { type, id, name, year } = res
+                const { type, id, name, year } = JSON.parse(decodeURIComponent(escape(window.atob(data))))
                 document.title = `${name} - ${year}`
 
                 goBack.href = `//kinopoisk.ru/${type}/${id}`
