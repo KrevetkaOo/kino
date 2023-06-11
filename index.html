@@ -6,6 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" href="kinopoisk.svg" type="image/x-icon" />
         <title>Kino</title>
+        <meta property="og:url" content="https://krevetkaoo.github.com/kino" />
+        <meta property="og:title" content="Кино" />
+        <meta property="og:image" content="" />
         <style>
             :root {
                 --padding: 40px;
@@ -49,7 +52,7 @@
                 opacity: 0;
             }
         </style>
-        <script type="text/javascript" defer="" src="//yohoho.cc/yo.js"></script>
+        <script type="text/javascript" defer src="//yohoho.cc/yo.js"></script>
         <style type="text/css">
             #yohoho-loading {
                 z-index: 9999;
@@ -116,8 +119,12 @@
             // prettier-ignore
             const data = location.search.replace('?', '').split('&').reduce((s, c) => ((s[c.split('=')[0]] = c.split('=')[1]), s), {}).data
             try {
-                const { type, id, name, year } = JSON.parse(decodeURIComponent(escape(window.atob(data))))
+                const { type, id, name, year, image } = JSON.parse(decodeURIComponent(escape(window.atob(data))))
                 document.title = `${name} - ${year}`
+                const title = document.querySelector('meta[property="og:title"]')
+                title.setAttribute('content', document.title)
+                const img = document.querySelector('meta[property="og:image"]')
+                img.setAttribute('content', image)
 
                 goBack.href = `//kinopoisk.ru/${type}/${id}`
                 yohoho.dataset.kinopoisk = id
